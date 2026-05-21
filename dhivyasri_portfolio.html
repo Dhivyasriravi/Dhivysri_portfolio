@@ -1,0 +1,568 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Dhivyasri Ravi | Portfolio</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css"/>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: 'Segoe UI', sans-serif; background: #f8f7ff; color: #1a1a2e; }
+
+    /* NAV */
+    nav { display: flex; justify-content: space-between; align-items: center; padding: 1rem 2rem; background: #fff; border-bottom: 1px solid #e8e6f8; position: sticky; top: 0; z-index: 100; box-shadow: 0 2px 10px rgba(127,119,221,0.08); }
+    .nav-logo { font-size: 20px; font-weight: 700; background: linear-gradient(135deg, #7F77DD, #D4537E); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+    .nav-links { display: flex; gap: 1.5rem; flex-wrap: wrap; }
+    .nav-links a { font-size: 14px; color: #555; text-decoration: none; cursor: pointer; transition: color 0.2s; }
+    .nav-links a:hover { color: #7F77DD; }
+
+    /* HERO */
+    .hero { text-align: center; padding: 4rem 2rem 2.5rem; background: linear-gradient(160deg, #f0eeff 0%, #fce8f1 50%, #fff8ec 100%); }
+    .avatar { width: 96px; height: 96px; border-radius: 50%; background: linear-gradient(135deg, #7F77DD, #D4537E, #EF9F27); display: flex; align-items: center; justify-content: center; font-size: 30px; font-weight: 700; color: #fff; margin: 0 auto 1.2rem; box-shadow: 0 8px 24px rgba(127,119,221,0.3); }
+    .hero h1 { font-size: 28px; font-weight: 700; color: #1a1a2e; margin-bottom: 0.4rem; }
+    .hero .role { font-size: 15px; color: #666; margin-bottom: 0.4rem; }
+    .hero .location { font-size: 13px; color: #888; margin-bottom: 1.2rem; }
+    .badge-row { display: flex; justify-content: center; flex-wrap: wrap; gap: 8px; margin-bottom: 1.4rem; }
+    .badge { font-size: 12px; padding: 4px 13px; border-radius: 999px; font-weight: 600; }
+    .b-purple { background: #EEEDFE; color: #3C3489; }
+    .b-pink   { background: #FBEAF0; color: #72243E; }
+    .b-amber  { background: #FAEEDA; color: #633806; }
+    .b-teal   { background: #E1F5EE; color: #085041; }
+    .b-blue   { background: #E6F1FB; color: #0C447C; }
+    .b-coral  { background: #FAECE7; color: #712B13; }
+    .b-green  { background: #EAF3DE; color: #27500A; }
+    .hero-btns { display: flex; justify-content: center; gap: 12px; flex-wrap: wrap; }
+    .btn-primary { padding: 10px 24px; border-radius: 8px; background: linear-gradient(135deg, #534AB7, #993556); color: #fff; font-size: 14px; font-weight: 600; border: none; cursor: pointer; transition: opacity 0.2s; }
+    .btn-primary:hover { opacity: 0.88; }
+    .btn-outline { padding: 10px 24px; border-radius: 8px; font-size: 14px; font-weight: 600; border: 2px solid #7F77DD; color: #534AB7; background: transparent; cursor: pointer; transition: background 0.2s; }
+    .btn-outline:hover { background: #EEEDFE; }
+
+    /* SECTIONS */
+    .section { padding: 2.5rem 2rem; max-width: 960px; margin: 0 auto; }
+    .section-title { font-size: 20px; font-weight: 700; color: #1a1a2e; margin-bottom: 1.2rem; display: flex; align-items: center; gap: 10px; }
+    .section-title::after { content: ''; flex: 1; height: 2px; background: linear-gradient(90deg, #7F77DD33, transparent); border-radius: 2px; }
+
+    /* ABOUT */
+    .summary-box { background: #fff; border-radius: 12px; padding: 1.2rem 1.5rem; font-size: 14px; color: #555; line-height: 1.8; border-left: 4px solid #7F77DD; box-shadow: 0 2px 12px rgba(127,119,221,0.08); }
+
+    /* SKILLS */
+    .skills-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 12px; }
+    .skill-group { background: #fff; border: 1px solid #e8e6f8; border-radius: 10px; padding: 1rem; }
+    .skill-group-title { font-size: 11px; font-weight: 700; color: #888; text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 8px; }
+    .skill-pills { display: flex; flex-wrap: wrap; gap: 6px; }
+    .skill-pill { font-size: 12px; padding: 3px 10px; border-radius: 999px; background: #f0eeff; color: #534AB7; font-weight: 500; }
+
+    /* EDUCATION */
+    .edu-card { background: #fff; border: 1px solid #e8e6f8; border-radius: 10px; padding: 1rem 1.25rem; margin-bottom: 10px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 6px; }
+    .edu-name { font-size: 14px; font-weight: 600; color: #1a1a2e; }
+    .edu-degree { font-size: 13px; color: #666; }
+    .edu-score { font-size: 15px; font-weight: 700; color: #0F6E56; }
+
+    /* EXPERIENCE */
+    .exp-card { background: #fff; border: 1px solid #e8e6f8; border-radius: 12px; padding: 1.1rem 1.4rem; margin-bottom: 12px; }
+    .exp-header { display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; gap: 4px; margin-bottom: 8px; }
+    .exp-title { font-size: 15px; font-weight: 600; color: #1a1a2e; }
+    .exp-company { font-size: 13px; color: #7F77DD; font-weight: 600; }
+    .exp-date { font-size: 12px; color: #888; background: #f0eeff; padding: 3px 10px; border-radius: 999px; }
+    .exp-bullets { list-style: none; }
+    .exp-bullets li { font-size: 13px; color: #555; line-height: 1.7; padding-left: 16px; position: relative; margin-bottom: 4px; }
+    .exp-bullets li::before { content: '›'; position: absolute; left: 0; color: #D4537E; font-weight: 700; font-size: 16px; }
+
+    /* PROJECTS */
+    .projects-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 14px; }
+    .proj-card { background: #fff; border: 1px solid #e8e6f8; border-radius: 12px; padding: 1.1rem 1.2rem; transition: box-shadow 0.2s, transform 0.2s; }
+    .proj-card:hover { box-shadow: 0 6px 20px rgba(127,119,221,0.15); transform: translateY(-2px); }
+    .proj-tag { font-size: 11px; font-weight: 600; padding: 3px 11px; border-radius: 999px; margin-bottom: 8px; display: inline-block; }
+    .proj-card h3 { font-size: 14px; font-weight: 600; color: #1a1a2e; margin-bottom: 6px; }
+    .proj-card p { font-size: 12px; color: #666; line-height: 1.6; }
+    .proj-footer { margin-top: 10px; display: flex; gap: 5px; flex-wrap: wrap; }
+    .tech-pill { font-size: 11px; background: #f5f5f5; color: #555; padding: 2px 9px; border-radius: 999px; }
+
+    /* PUBLICATION */
+    .pub-card { background: linear-gradient(135deg, #EEEDFE, #FBEAF0); border-radius: 12px; padding: 1.2rem 1.4rem; border: 1px solid #AFA9EC; margin-top: 1.4rem; }
+    .pub-card h3 { font-size: 14px; font-weight: 600; color: #3C3489; margin-bottom: 5px; }
+    .pub-card p { font-size: 13px; color: #534AB7; line-height: 1.6; }
+
+    /* AI SECTION */
+    .tabs { display: flex; gap: 6px; margin-bottom: 1rem; }
+    .tab { font-size: 13px; padding: 7px 18px; border-radius: 999px; border: 1.5px solid #ccc; cursor: pointer; background: transparent; color: #666; font-weight: 500; transition: all 0.2s; }
+    .tab.active { background: linear-gradient(135deg, #7F77DD, #D4537E); color: #fff; border-color: transparent; }
+
+    /* CHAT */
+    .chat-box { background: #fff; border: 1px solid #e8e6f8; border-radius: 14px; overflow: hidden; box-shadow: 0 4px 16px rgba(127,119,221,0.1); }
+    .chat-header { background: linear-gradient(135deg, #534AB7, #993556); padding: 1rem 1.2rem; color: #fff; font-size: 14px; font-weight: 600; display: flex; align-items: center; gap: 10px; }
+    .chat-dot { width: 9px; height: 9px; border-radius: 50%; background: #5DCAA5; }
+    .chat-messages { padding: 1rem; min-height: 200px; max-height: 280px; overflow-y: auto; display: flex; flex-direction: column; gap: 10px; }
+    .msg { max-width: 78%; font-size: 13px; line-height: 1.6; padding: 9px 13px; border-radius: 14px; }
+    .msg.ai   { background: #EEEDFE; color: #3C3489; align-self: flex-start; border-bottom-left-radius: 3px; }
+    .msg.user { background: linear-gradient(135deg, #7F77DD, #D4537E); color: #fff; align-self: flex-end; border-bottom-right-radius: 3px; }
+    .msg.loading { background: #f5f5f5; color: #888; align-self: flex-start; font-style: italic; }
+    .chat-input-row { display: flex; gap: 8px; padding: 0.8rem; border-top: 1px solid #eee; }
+    .chat-input { flex: 1; font-size: 13px; padding: 9px 14px; border-radius: 8px; border: 1px solid #ddd; outline: none; background: #fafafa; }
+    .chat-input:focus { border-color: #7F77DD; background: #fff; }
+    .chat-send { padding: 9px 16px; border-radius: 8px; background: linear-gradient(135deg, #7F77DD, #D4537E); color: #fff; font-size: 14px; border: none; cursor: pointer; }
+
+    /* FORM BUILDER */
+    .formbuilder { background: #fff; border: 1px solid #e8e6f8; border-radius: 14px; overflow: hidden; box-shadow: 0 4px 16px rgba(29,158,117,0.08); }
+    .fb-header { padding: 1rem 1.2rem; background: linear-gradient(135deg, #1D9E75, #534AB7); color: #fff; font-size: 14px; font-weight: 600; display: flex; align-items: center; gap: 8px; }
+    .fb-body { padding: 1.1rem; }
+    .fb-input-row { display: flex; gap: 8px; margin-bottom: 1rem; }
+    .fb-input { flex: 1; font-size: 13px; padding: 9px 14px; border-radius: 8px; border: 1px solid #ddd; outline: none; background: #fafafa; }
+    .fb-input:focus { border-color: #7F77DD; background: #fff; }
+    .fb-btn { padding: 9px 16px; border-radius: 8px; background: linear-gradient(135deg, #1D9E75, #534AB7); color: #fff; font-size: 13px; border: none; cursor: pointer; font-weight: 600; white-space: nowrap; }
+    .generated-form { background: #fafafa; border-radius: 10px; padding: 1.1rem; min-height: 70px; border: 1px dashed #ddd; }
+    .generated-form label { display: block; font-size: 12px; font-weight: 600; color: #555; margin-bottom: 4px; margin-top: 14px; }
+    .generated-form input,
+    .generated-form select,
+    .generated-form textarea { width: 100%; font-size: 13px; padding: 8px 11px; border-radius: 8px; border: 1px solid #ddd; background: #fff; margin-bottom: 2px; }
+    .generated-form textarea { min-height: 80px; resize: vertical; }
+    .generated-form .submit-btn { margin-top: 16px; padding: 9px 22px; border-radius: 8px; background: linear-gradient(135deg, #7F77DD, #D4537E); color: #fff; font-size: 13px; border: none; cursor: pointer; font-weight: 600; }
+    .empty-state { color: #aaa; font-size: 13px; font-style: italic; text-align: center; padding: 1rem 0; }
+
+    /* CONTACT */
+    .contact-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 12px; }
+    .contact-card { background: #fff; border: 1px solid #e8e6f8; border-radius: 12px; padding: 1.2rem; text-align: center; transition: box-shadow 0.2s; }
+    .contact-card:hover { box-shadow: 0 4px 14px rgba(127,119,221,0.12); }
+    .contact-card .c-label { font-size: 13px; font-weight: 600; color: #1a1a2e; margin-top: 6px; margin-bottom: 3px; }
+    .contact-card p { font-size: 11px; color: #666; word-break: break-all; }
+
+    /* FOOTER */
+    footer { text-align: center; padding: 1.5rem; font-size: 12px; color: #aaa; border-top: 1px solid #eee; margin-top: 2rem; }
+
+    /* SCROLLBAR */
+    .chat-messages::-webkit-scrollbar { width: 4px; }
+    .chat-messages::-webkit-scrollbar-thumb { background: #ddd; border-radius: 4px; }
+  </style>
+</head>
+<body>
+
+<nav>
+  <span class="nav-logo">DR</span>
+  <div class="nav-links">
+    <a onclick="scrollSec('about')">About</a>
+    <a onclick="scrollSec('skills')">Skills</a>
+    <a onclick="scrollSec('education')">Education</a>
+    <a onclick="scrollSec('experience')">Experience</a>
+    <a onclick="scrollSec('projects')">Projects</a>
+    <a onclick="scrollSec('ai-section')">AI Tools</a>
+    <a onclick="scrollSec('contact')">Contact</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="avatar">DR</div>
+  <h1>Dhivyasri Ravi</h1>
+  <p class="role">Full Stack Developer &nbsp;·&nbsp; CSE Graduate 2026</p>
+  <p class="location"><i class="ti ti-map-pin"></i> Namakkal, Tamil Nadu, India</p>
+  <div class="badge-row">
+    <span class="badge b-purple">Java</span>
+    <span class="badge b-pink">Python</span>
+    <span class="badge b-amber">JavaScript</span>
+    <span class="badge b-teal">PHP</span>
+    <span class="badge b-blue">MySQL</span>
+    <span class="badge b-coral">Bubble.io</span>
+    <span class="badge b-green">Full Stack</span>
+  </div>
+  <div class="hero-btns">
+    <button class="btn-primary" onclick="scrollSec('projects')">View Projects</button>
+    <button class="btn-outline" onclick="scrollSec('contact')">Contact Me</button>
+  </div>
+</div>
+
+<!-- ABOUT -->
+<div class="section" id="about">
+  <div class="section-title">About Me</div>
+  <div class="summary-box">
+    Motivated Computer Science Engineering graduate seeking Junior Full Stack Developer, Web Developer, or Software Engineer roles.
+    Skilled in frontend and backend development, database management, API integration, and web platform development using
+    HTML, CSS, JavaScript, MySQL, MongoDB, and Bubble.io — with strong teamwork and problem-solving abilities.
+    Currently exploring AI/ML and building real-world AI-powered applications.
+  </div>
+</div>
+
+<!-- SKILLS -->
+<div class="section" id="skills">
+  <div class="section-title">Technical Skills</div>
+  <div class="skills-grid">
+    <div class="skill-group">
+      <div class="skill-group-title">Programming</div>
+      <div class="skill-pills">
+        <span class="skill-pill">Java</span>
+        <span class="skill-pill">Python</span>
+        <span class="skill-pill">C</span>
+        <span class="skill-pill">JavaScript</span>
+        <span class="skill-pill">SQL</span>
+      </div>
+    </div>
+    <div class="skill-group">
+      <div class="skill-group-title">Web Development</div>
+      <div class="skill-pills">
+        <span class="skill-pill">HTML</span>
+        <span class="skill-pill">CSS</span>
+        <span class="skill-pill">JavaScript</span>
+        <span class="skill-pill">PHP</span>
+      </div>
+    </div>
+    <div class="skill-group">
+      <div class="skill-group-title">Databases</div>
+      <div class="skill-pills">
+        <span class="skill-pill">MySQL</span>
+        <span class="skill-pill">MongoDB</span>
+      </div>
+    </div>
+    <div class="skill-group">
+      <div class="skill-group-title">Tools & Platforms</div>
+      <div class="skill-pills">
+        <span class="skill-pill">Bubble.io</span>
+        <span class="skill-pill">Git</span>
+        <span class="skill-pill">GitHub</span>
+        <span class="skill-pill">Postman</span>
+        <span class="skill-pill">VS Code</span>
+      </div>
+    </div>
+    <div class="skill-group">
+      <div class="skill-group-title">Concepts</div>
+      <div class="skill-pills">
+        <span class="skill-pill">API Integration</span>
+        <span class="skill-pill">Full-Stack Dev</span>
+        <span class="skill-pill">UI Design</span>
+        <span class="skill-pill">Workflow Automation</span>
+        <span class="skill-pill">Debugging</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- EDUCATION -->
+<div class="section" id="education">
+  <div class="section-title">Education</div>
+  <div class="edu-card">
+    <div>
+      <div class="edu-name">Paavai Engineering College, Namakkal</div>
+      <div class="edu-degree">B.E. Computer Science and Engineering</div>
+    </div>
+    <div style="text-align:right">
+      <div class="edu-score">85%</div>
+      <div style="font-size:12px;color:#888">May 2026</div>
+    </div>
+  </div>
+  <div class="edu-card">
+    <div>
+      <div class="edu-name">Bharathi Vidhyalaya Higher Secondary School</div>
+      <div class="edu-degree">HSC — Mathematical Biology</div>
+    </div>
+    <div style="text-align:right">
+      <div style="font-size:12px;color:#888">2022</div>
+    </div>
+  </div>
+</div>
+
+<!-- EXPERIENCE -->
+<div class="section" id="experience">
+  <div class="section-title">Experience</div>
+  <div class="exp-card">
+    <div class="exp-header">
+      <div>
+        <div class="exp-title">Full Stack Developer Intern</div>
+        <div class="exp-company">Draupathi IT Solutions (DIT)</div>
+      </div>
+      <span class="exp-date">Jan 2025 – Jan 2026</span>
+    </div>
+    <ul class="exp-bullets">
+      <li>Assisted in frontend and backend development for 3+ real-time web application modules.</li>
+      <li>Worked with HTML, CSS, JavaScript, PHP, and MySQL technologies.</li>
+      <li>Handled database integration, debugging and testing to improve workflow efficiency.</li>
+    </ul>
+  </div>
+  <div class="exp-card">
+    <div class="exp-header">
+      <div>
+        <div class="exp-title">Student Coordinator</div>
+        <div class="exp-company">Paavai Soft Innovation Center</div>
+      </div>
+      <span class="exp-date">Oct 2024 – Present</span>
+    </div>
+    <ul class="exp-bullets">
+      <li>Coordinated technical and innovation-focused student activities.</li>
+      <li>Assisted in organizing entrepreneurship programs and workshops.</li>
+    </ul>
+  </div>
+</div>
+
+<!-- PROJECTS -->
+<div class="section" id="projects">
+  <div class="section-title">Projects</div>
+  <div class="projects-grid">
+    <div class="proj-card">
+      <span class="proj-tag b-teal">Full Stack</span>
+      <h3>Go Agro</h3>
+      <p>Web app promoting organic farming and sustainable agriculture with frontend, database integration, and workflow planning.</p>
+      <div class="proj-footer">
+        <span class="tech-pill">HTML</span>
+        <span class="tech-pill">CSS</span>
+        <span class="tech-pill">JS</span>
+        <span class="tech-pill">PHP</span>
+        <span class="tech-pill">MySQL</span>
+      </div>
+    </div>
+    <div class="proj-card">
+      <span class="proj-tag b-purple">Published</span>
+      <h3>NeedSync</h3>
+      <p>Intelligent resource matching system for user need identification. Paper published at ICESM-2026 international conference.</p>
+      <div class="proj-footer">
+        <span class="tech-pill">HTML</span>
+        <span class="tech-pill">CSS</span>
+        <span class="tech-pill">JS</span>
+        <span class="tech-pill">PHP</span>
+        <span class="tech-pill">MySQL</span>
+      </div>
+    </div>
+    <div class="proj-card">
+      <span class="proj-tag b-amber">No-Code</span>
+      <h3>GrowLyf</h3>
+      <p>Startup client platform built with Bubble.io — interface customization, workflow implementation, and feature integration.</p>
+      <div class="proj-footer">
+        <span class="tech-pill">Bubble.io</span>
+        <span class="tech-pill">DB Mgmt</span>
+        <span class="tech-pill">UI Design</span>
+      </div>
+    </div>
+    <div class="proj-card">
+      <span class="proj-tag b-pink">AI</span>
+      <h3>Portfolio + AI Chat</h3>
+      <p>This portfolio — with a live AI assistant that answers questions about my skills and experience using Claude API.</p>
+      <div class="proj-footer">
+        <span class="tech-pill">HTML/CSS/JS</span>
+        <span class="tech-pill">Claude API</span>
+      </div>
+    </div>
+    <div class="proj-card">
+      <span class="proj-tag b-blue">AI Tool</span>
+      <h3>AI Form Builder</h3>
+      <p>Describe any form in plain English — Claude API generates and renders a real HTML form instantly.</p>
+      <div class="proj-footer">
+        <span class="tech-pill">JavaScript</span>
+        <span class="tech-pill">Claude API</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="pub-card">
+    <h3><i class="ti ti-file-certificate" style="font-size:15px;margin-right:6px"></i>NeedSync: A Web-Based Intelligent System for Need Identification and Resource Matching</h3>
+    <p>Presented at ICESM-2026 — Second International Conference on Engineering, Science and Management &nbsp;·&nbsp; April 2026</p>
+  </div>
+</div>
+
+<!-- AI SECTION -->
+<div class="section" id="ai-section">
+  <div class="section-title">AI Features</div>
+  <div class="tabs">
+    <button class="tab active" onclick="switchTab('chat')">
+      <i class="ti ti-message-circle"></i> AI Chat
+    </button>
+    <button class="tab" onclick="switchTab('formbuilder')">
+      <i class="ti ti-wand"></i> AI Form Builder
+    </button>
+  </div>
+
+  <div id="tab-chat">
+    <div class="chat-box">
+      <div class="chat-header">
+        <div class="chat-dot"></div>
+        Chat with Dhivyasri's AI Assistant
+      </div>
+      <div class="chat-messages" id="chat-messages">
+        <div class="msg ai">Hi! I'm Dhivyasri's AI assistant. Ask me about her skills, projects, internship, or education!</div>
+      </div>
+      <div class="chat-input-row">
+        <input class="chat-input" id="chat-input" placeholder="e.g. What projects has she built?" onkeydown="if(event.key==='Enter') sendChat()" />
+        <button class="chat-send" onclick="sendChat()">
+          <i class="ti ti-send"></i>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <div id="tab-formbuilder" style="display:none">
+    <div class="formbuilder">
+      <div class="fb-header">
+        <i class="ti ti-wand"></i> AI Form Builder
+      </div>
+      <div class="fb-body">
+        <div class="fb-input-row">
+          <input class="fb-input" id="fb-input" placeholder="e.g. Job application form with name, email, experience, skills..." onkeydown="if(event.key==='Enter') buildForm()" />
+          <button class="fb-btn" onclick="buildForm()">
+            <i class="ti ti-wand"></i> Generate
+          </button>
+        </div>
+        <div class="generated-form" id="generated-form">
+          <div class="empty-state">Describe a form above and AI will generate it here!</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- CONTACT -->
+<div class="section" id="contact">
+  <div class="section-title">Contact</div>
+  <div class="contact-grid">
+    <div class="contact-card">
+      <i class="ti ti-mail" style="font-size:26px;color:#7F77DD"></i>
+      <div class="c-label">Email</div>
+      <p>dhivyasriravi5@gmail.com</p>
+    </div>
+    <div class="contact-card">
+      <i class="ti ti-phone" style="font-size:26px;color:#0F6E56"></i>
+      <div class="c-label">Phone</div>
+      <p>+91-6374568797</p>
+    </div>
+    <div class="contact-card">
+      <i class="ti ti-brand-linkedin" style="font-size:26px;color:#185FA5"></i>
+      <div class="c-label">LinkedIn</div>
+      <p>Update with your real LinkedIn URL</p>
+    </div>
+    <div class="contact-card">
+      <i class="ti ti-brand-github" style="font-size:26px;color:#3C3489"></i>
+      <div class="c-label">GitHub</div>
+      <p>Update with your real GitHub URL</p>
+    </div>
+    <div class="contact-card">
+      <i class="ti ti-map-pin" style="font-size:26px;color:#D4537E"></i>
+      <div class="c-label">Location</div>
+      <p>Namakkal, Tamil Nadu, India</p>
+    </div>
+  </div>
+</div>
+
+<footer>
+  Built with HTML, CSS, JavaScript & Claude API &nbsp;·&nbsp; Dhivyasri Ravi &copy; 2026
+</footer>
+
+<script>
+  // ── scroll helper ──
+  function scrollSec(id) {
+    document.getElementById(id).scrollIntoView({ behavior: 'smooth' });
+  }
+
+  // ── tab switcher ──
+  function switchTab(tab) {
+    document.getElementById('tab-chat').style.display        = tab === 'chat'        ? 'block' : 'none';
+    document.getElementById('tab-formbuilder').style.display = tab === 'formbuilder' ? 'block' : 'none';
+    document.querySelectorAll('.tab').forEach((t, i) => {
+      t.classList.toggle('active',
+        (i === 0 && tab === 'chat') || (i === 1 && tab === 'formbuilder')
+      );
+    });
+  }
+
+  // ── YOUR API KEY — paste it here ──
+  const API_KEY = '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';
+
+  const PROFILE = `You are the AI assistant on Dhivyasri Ravi's portfolio website. Here is everything about her:
+
+NAME: Dhivyasri Ravi
+LOCATION: Namakkal, Tamil Nadu, India
+PHONE: +91-6374568797
+EMAIL: dhivyasriravi5@gmail.com
+
+EDUCATION:
+- B.E. Computer Science and Engineering, Paavai Engineering College, Namakkal — 85% (May 2026)
+- HSC Mathematical Biology, Bharathi Vidhyalaya Higher Secondary School — 2022
+
+SKILLS:
+- Programming: Java, Python, C, JavaScript, SQL
+- Web: HTML, CSS, JavaScript, PHP
+- Databases: MySQL, MongoDB
+- Tools: Bubble.io, Git, GitHub, Postman, VS Code
+- Concepts: API Integration, Full-Stack Development, UI Design, Workflow Automation, Debugging
+
+EXPERIENCE:
+- Full Stack Developer Intern at Draupathi IT Solutions (DIT), Jan 2025 – Jan 2026
+  * Worked on 3+ real-time web application modules
+  * Technologies: HTML, CSS, JavaScript, PHP, MySQL
+- Student Coordinator at Paavai Soft Innovation Center, Oct 2024 – Present
+  * Coordinated technical student activities, entrepreneurship workshops
+
+PROJECTS:
+1. Go Agro – Organic Farming Support Application (HTML, CSS, JS, PHP, MySQL)
+2. NeedSync – Intelligent Resource Matching System (HTML, CSS, JS, PHP, MySQL) — paper published at ICESM-2026
+3. GrowLyf – Client Web Platform (Bubble.io, DB Management, UI Design)
+4. Portfolio + AI Chat – Personal portfolio with live AI assistant using Claude API
+5. AI Form Builder – Describe a form in English, Claude API generates it instantly
+
+PUBLICATION: NeedSync paper at ICESM-2026, April 2026
+
+Keep answers short (2–4 sentences), friendly, and professional.`;
+
+  // ── AI Chat ──
+  async function sendChat() {
+    const input = document.getElementById('chat-input');
+    const msg   = input.value.trim();
+    if (!msg) return;
+    input.value = '';
+    const msgs = document.getElementById('chat-messages');
+    msgs.innerHTML += `<div class="msg user">${msg}</div>`;
+    msgs.innerHTML += `<div class="msg loading" id="loading-msg">Thinking...</div>`;
+    msgs.scrollTop = msgs.scrollHeight;
+    try {
+      const res  = await fetch('https://api.anthropic.com/v1/messages', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'x-api-key': API_KEY,
+          'anthropic-version': '2023-06-01',
+          'anthropic-dangerous-direct-browser-access': 'true'
+        },
+        body: JSON.stringify({
+          model: 'claude-sonnet-4-20250514',
+          max_tokens: 500,
+          system: PROFILE,
+          messages: [{ role: 'user', content: msg }]
+        })
+      });
+      const data  = await res.json();
+      const reply = data.content?.map(c => c.text || '').join('') || 'Sorry, could not respond.';
+      document.getElementById('loading-msg').remove();
+      msgs.innerHTML += `<div class="msg ai">${reply}</div>`;
+      msgs.scrollTop  = msgs.scrollHeight;
+    } catch (e) {
+      document.getElementById('loading-msg').textContent = 'Error. Please try again.';
+    }
+  }
+
+  // ── AI Form Builder ──
+  async function buildForm() {
+    const input     = document.getElementById('fb-input');
+    const desc      = input.value.trim();
+    if (!desc) return;
+    const container = document.getElementById('generated-form');
+    container.innerHTML = '<div class="empty-state">Generating your form...</div>';
+    try {
+      const res  = await fetch('https://api.anthropic.com/v1/messages', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'x-api-key': API_KEY,
+          'anthropic-version': '2023-06-01',
+          'anthropic-dangerous-direct-browser-access': 'true'
+        },
+        body: JSON.stringify({
+          model: 'claude-sonnet-4-20250514',
+          max_tokens: 1000,
+          system: `You generate HTML form code only. Return ONLY the inner HTML of the form — labels, inputs, selects, textareas, and a submit button. No <form> tag. No explanation. No markdown backticks. Submit button must have class="submit-btn".`,
+          messages: [{ role: 'user', content: `Generate a form for: ${desc}` }]
+        })
+      });
+      const data = await res.json();
+      let html   = data.content?.map(c => c.text || '').join('') || '';
+      html       = html.replace(/```html|```/g, '').trim();
+      container.innerHTML = html || '<div class="empty-state">Could not generate. Try again.</div>';
+    } catch (e) {
+      container.innerHTML = '<div class="empty-state">Error. Please try again.</div>';
+    }
+  }
+</script>
+</body>
+</html>
